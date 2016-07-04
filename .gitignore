@@ -3,6 +3,8 @@
 *.xls*
 *.RDS
 *.csv
+*.yml
+*.yaml
 
 # R Specific     #
 ###################
