@@ -1,0 +1,8 @@
+berkshire <- read.table('berkshire',sep = '\t', header = TRUE)
+head(berkshire)
+berkshire.xts <- xts(berkshire[,-1],as.Date(berkshire[,1]))
+berkshire.returns <- Return.calculate(berkshire.xts)
+charts.PerformanceSummary(berkshire.returns,ylog=TRUE)
+chart.RelativePerformance(berkshire.returns[,1],berkshire.returns[,2])
+chart.RollingPerformance(berkshire.returns,width = 12*5)
+table.CAPM(berkshire.returns[,1],berkshire.returns[,2])

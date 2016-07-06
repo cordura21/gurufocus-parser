@@ -1,26 +1,28 @@
-first_row <- 21
-last_col <- 22
-ticker <- 'PAYX.xls'
+source('params.R')
+library(TTR)
+price <- TTR::getYahooData(ticker)
+
 library(readxl)
-contents <- read_excel(ticker,skip = 20)[,1:22]
+contents <- read_excel(paste0(ticker,'.xls'),skip = first_row)[,1:last_col]
 
 library(reshape2)
 contents <- melt(contents,id.vars = c('Fiscal Period'))
 names(contents)[1] <- 'concept'
 
-important_concepts <- c("eps without NRI",
-                        "Free Cashflow per Share",
-                        "Book Value per Share",
-                        "Return on Equity %",
-                        "Gross Margin %",
-                        "Debt to Equity"
-                        )
+
 
 library(ggplot2)
 library(lubridate)
-contents$variable <- as.character(contents$variable)
 
 
-ggplot(subset(contents,concept %in% important_concepts),
+gplot <- ggplot(subset(contents,concept %in% important_concepts),
        aes(x = variable, y= value,group = 1)) + geom_line() +
-  facet_wrap(~concept, scales = 'free_y') + theme_bw()
+  scale_x_discrete()+
+  facet_wrap(~concept, scales = 'free_y',ncol = 2) + theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = ticker)
+
+ggsave(filename = paste0(ticker,'.pdf'),width = 40,height = 100,units = 'cm')
+
+library(PerformanceAnalytics)
+charts.PerformanceSummary(Return.calculate(price[,'Close']), ylog = TRUE)
