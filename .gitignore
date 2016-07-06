@@ -5,6 +5,8 @@
 *.csv
 *.yml
 *.yaml
+*.pdf
+*.numbers
 
 # R Specific     #
 ###################
