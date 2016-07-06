@@ -10,18 +10,5 @@ last_col <- 22
 
 # The list of concepts I want to plot
 
-important_concepts <- c("eps without NRI",
-                        "Free Cashflow per Share",
-                        "Book Value per Share",
-                        "Return on Equity %",
-                        "Gross Margin %",
-                        "Debt to Equity",
-                        "Price-to-Free-Cash-Flow Ratio" ,
-                        "EBIT per Share",
-                        "Month End Stock Price",
-                        "Earnings Yield (Joel Greenblatt)",
-                        "Net Cash (per share)",
-                        "Shiller PE Ratio",
-                        "Intangible Assets",
-                        "Total Assets"
-)
+important_concepts <- read.table('chart_concepts',sep = ',', header = TRUE)
+
