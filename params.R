@@ -1,5 +1,5 @@
 # Ticker name
-ticker <- 'PG'
+ticker <- 'AZO'
 
 #When you download the excel sheet from Gurufocus,
 # save it as <ticker>.xls
@@ -10,5 +10,5 @@ last_col <- 22
 
 # The list of concepts I want to plot
 
-important_concepts <- read.table('chart_concepts',sep = ',', header = TRUE)
+important_concepts <- read.table('chart_concepts.csv',sep = ',', header = TRUE)
 

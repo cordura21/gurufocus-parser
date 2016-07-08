@@ -1,6 +1,6 @@
 source('params.R')
-# library(TTR)
-# price <- TTR::getYahooData(ticker)
+ library(TTR)
+ price <- TTR::getYahooData('HIBB')
 
 library(readxl)
 contents <- read_excel(paste0(ticker,'.xls'),skip = first_row)[,1:last_col]
@@ -36,4 +36,6 @@ ggsave(filename = paste0(ticker,'-',curr_group,'.pdf'))
 }
 
 library(PerformanceAnalytics)
-charts.PerformanceSummary(Return.calculate(price[,'Close']), ylog = TRUE)
+chartPrices <- price[,'Close']
+charts.PerformanceSummary(Return.calculate(chartPrices), ylog = TRUE)
+charts.RollingPerformance(chartPrices,width = 252)
