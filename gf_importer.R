@@ -1,6 +1,6 @@
 source('params.R')
  library(TTR)
- price <- TTR::getYahooData('HIBB')
+ price <- TTR::getYahooData('PAYX')
 
 library(readxl)
 contents <- read_excel(paste0(ticker,'.xls'),skip = first_row)[,1:last_col]
