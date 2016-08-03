@@ -45,4 +45,8 @@ dcf_calc <- function(price ,
   
   full.eps.vector <- c(-price,stable.eps + growth.eps)
   return(list(growth.eps,stable.eps,full.eps.vector))
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> aec3f37133106bfbfd5f18945311eca5463bc907
