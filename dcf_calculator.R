@@ -1,10 +1,11 @@
-# dcf_calc(price =  105.47,
-# eps = 8.57,
-# dcf.discount.rate = .12,
-# growth.rate = .2,
-# years.growth = 10,
-# stable.growth = .04,
-# years.stable = 10)
+library(dplyr)
+dcf_calc(price =  105.47,
+eps = 8.57,
+dcf.discount.rate = .12,
+growth.rate = .2,
+years.growth = 10,
+stable.growth = .04,
+years.stable = 10) %>% lapply(., sum) %>% unlist()
 
 dcf_calc <- function(price ,
                      eps,
@@ -37,13 +38,12 @@ dcf_calc <- function(price ,
   
  fv.all <- data.frame(growth = growth.eps,stable = stable.eps)
  
-  n <- max(length(growth.eps), length(stable.eps))
-  length(growth.eps) <- n                      
-  length(stable.eps) <- n
-  growth.eps[is.na(growth.eps)] <- 0
-  stable.eps + growth.eps
-  
+  n <- max(length(pv.growth), length(pv.stable))
+  length(pv.growth) <- n                      
+  length(pv.stable) <- n
+  pv.growth[is.na(pv.growth)] <- 0
+
   full.eps.vector <- c(-price,stable.eps + growth.eps)
-  return(list(growth.eps,stable.eps,full.eps.vector))
+  return(list(pv.growth,pv.stable,pv.growth + pv.stable))
 
 }
